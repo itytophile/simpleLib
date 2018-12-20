@@ -1,17 +1,12 @@
 #include "simpleTime.h"
 
-__asm__(
-".global _GetTicks\n"
-"_GetTicks:\n"
-"mov.l syscall_table, r2\n"
-"mov.l 1f, r0\n"
-"jmp @r2\n"
-"nop\n"
-"1:\n"
-".long 0x03B\n"
-"syscall_table:\n"
-".long 0x80010070\n"
-);
+//syscall GetTicks;
+const static int SysCallCode[] = {0xD201422B,0x60F20000,0x80010070};
+const static int (*SysCall)(int R4, int R5, int R6, int R7, int FNo ) = (void*)&SysCallCode;
+
+int GetTicks() {
+	return (*SysCall)(0, 0, 0, 0, 0x3B);
+}
 
 static unsigned int lastrandom=0x12345678;
 
