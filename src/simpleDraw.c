@@ -21,14 +21,14 @@ void rect(int x1, int y1, int x2, int y2) {
 void circle(int xc, int yc, int r) { //Eric Andres
 	int x = 0, y = r, d = r-1;
 	while(y >= x) {
-		pixel(xc+x, yc+y);
-		pixel(xc+y, yc+x);
-		pixel(xc-x, yc+y);
-		pixel(xc-y, yc+x);
-		pixel(xc+x, yc-y);
-		pixel(xc+y, yc-x);
-		pixel(xc-x, yc-y);
-		pixel(xc-y, yc-x);
+		pixel(xc+x, yc+y, 0);
+		pixel(xc+y, yc+x, 0);
+		pixel(xc-x, yc+y, 0);
+		pixel(xc-y, yc+x, 0);
+		pixel(xc+x, yc-y, 0);
+		pixel(xc+y, yc-x, 0);
+		pixel(xc-x, yc-y, 0);
+		pixel(xc-y, yc-x, 0);
 		if(d >= 2*x) d -= 2*(x++)+1;
 		else if(d < 2*(r-y)) d += 2*(y--) - 1;
 		else d += 2*((y--)-(x++)-1);
